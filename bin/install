@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+stow --restow --target="$HOME/.config" .config
+
