@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+stow --delete --target="$HOME/.config" .config
+
