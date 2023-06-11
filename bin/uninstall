@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 
 stow --delete --target="$HOME/.config" .config
+stow --delete --target="$HOME/.oh-my-zsh" .oh-my-zsh
 

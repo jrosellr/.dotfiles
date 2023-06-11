@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
 
 stow --restow --target="$HOME/.config" .config
+stow --restow --target="$HOME/.oh-my-zsh" .oh-my-zsh
 
