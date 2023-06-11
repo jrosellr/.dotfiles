@@ -1,0 +1,21 @@
+# Import additional configuration files
+import:
+  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+
+# Font configuration
+font:
+  normal:
+    family: RobotoMono Nerd Font
+
+  bold:
+    family: RobotoMono Nerd Font
+
+  italic:
+    family: RobotoMono Nerd Font
+
+  bold_italic:
+    family: RobotoMono Nerd Font
+
+  # Point size
+  size: 14.0
+
