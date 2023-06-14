@@ -5,16 +5,16 @@ import:
 # Font configuration
 font:
   normal:
-    family: RobotoMono Nerd Font
+    family: FiraCode Nerd Font
 
   bold:
-    family: RobotoMono Nerd Font
+    family: FiraCode Nerd Font
 
   italic:
-    family: RobotoMono Nerd Font
+    family: FiraCode Nerd Font
 
   bold_italic:
-    family: RobotoMono Nerd Font
+    family: FiraCode Nerd Font
 
   # Point size
   size: 14.0
