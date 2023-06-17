@@ -1,0 +1,14 @@
+[credential]
+	credentialStore = gpg
+	helper = /usr/local/bin/git-credential-manager
+
+[user]
+	name = Joan Rosell
+	email = joan.rosellr@gmail.com
+
+[core]
+	editor = /home/jrosell/.local/bin/nvim.appimage
+
+[includeIf "gitdir:~/dev/work/"]
+  path = .gitconfig-vueling
+
