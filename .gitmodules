@@ -1,3 +1,6 @@
 [submodule ".config/alacritty/catppuccin"]
 	path = .config/alacritty/catppuccin
 	url = git@github.com:catppuccin/alacritty.git
+[submodule "vueling"]
+	path = vueling
+	url = git@github.com:jrosellr/.dotfiles-vueling.git

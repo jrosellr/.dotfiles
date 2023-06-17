@@ -2,4 +2,8 @@
 
 stow --delete --target="$HOME/.config" .config
 stow --delete --target="$HOME/.oh-my-zsh" .oh-my-zsh
+stow --delete --target="$HOME" home
 
+cd "$HOME/.dotfiles/vueling"
+./bin/uninstall
+cd "$HOME/.dotfiles"

@@ -2,4 +2,9 @@
 
 stow --restow --target="$HOME/.config" .config
 stow --restow --target="$HOME/.oh-my-zsh" .oh-my-zsh
+stow --restow --target="$HOME" home
+
+cd "$HOME/.dotfiles/vueling"
+./bin/install
+cd "$HOME/.dotfiles"
 
