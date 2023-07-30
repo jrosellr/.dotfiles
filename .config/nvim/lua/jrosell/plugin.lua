@@ -51,4 +51,5 @@ return packer.startup(function(use)
   })
 
   use('tpope/vim-fugitive')
+  use('ThePrimeagen/harpoon')
 end)
