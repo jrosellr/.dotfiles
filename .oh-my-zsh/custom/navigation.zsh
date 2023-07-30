@@ -5,3 +5,4 @@ jc() {
   dotfileFolders=("${HOME}/.config/nvim" "${HOME}/.oh-my-zsh/custom")
   cd $(printf "%s\n" "${dotfileFolders[@]}" | fzf)
 }
+
