@@ -70,6 +70,33 @@ rst() {
   env_parallel run_smart_suite ::: "ams-data" "smart-cdk" "smart-webapp"
 }
 
+nr() {
+  local script=$(cat ./package.json | jq -r '.scripts | keys []' | sort | fzf)
+  if [ -z "$script" ]; then
+    return
+  fi
+
+  npm run "$script"
+}
+
+sdp() {
+  find . -type f -name "launchSettings.json" | xargs cat | jq -r ".profiles | keys[]" | grep ".*_.*" | fzf
+}
+
+dr() {
+  local project=$(find . -type f -name "**.WebApi.csproj")
+  if [ -z "$project" ]; then
+    return
+  fi
+
+  local profile=$(sdp)
+  if [ -z "$profile" ]; then
+    return
+  fi
+
+  dotnet run --project "$project" --launch-profile "$profile"
+}
+
 alias vst="view_smart_test_results"
 alias cst="clear_smart_test_results"
 
