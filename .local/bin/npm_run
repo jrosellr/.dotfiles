@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+available_scripts=$(jq '.scripts | keys[]' package.json)
+if [ -z "$available_scripts" ]; then
+  return
+fi
+
+selected_script=$($available_scripts | sort | fzf)
+if [ -z "$selected_script" ]; then
+  return
+fi
+
+npm run "$selected_script"
+

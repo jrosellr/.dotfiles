@@ -31,6 +31,15 @@ lsp_zero.configure('lua_ls', {
   }
 })
 
+local function organize_imports()
+  local params = {
+    command = "_typescript.organizeImports",
+    arguments = { vim.api.nvim_buf_get_name(0) },
+    title = ""
+  }
+  vim.lsp.buf.execute_command(params)
+end
+
 lsp_zero.on_attach(function(client, bufnr)
   local opts = {
     noremap = true,
@@ -125,13 +134,28 @@ lsp_zero.on_attach(function(client, bufnr)
     })
   end
 
+  if client.name == "tsserver" then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd('BufWritePost', {
+      callback = function()
+        local params = {
+          command = "_typescript.organizeImports",
+          arguments = { vim.api.nvim_buf_get_name(0) },
+          title = ""
+        }
+        --vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 500)
+      end,
+    })
+  end
+
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
   vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-  vim.keymap.set("n", "<leader>qd", function() vim.diagnostic.setqflist() end, opts)
-  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "<leader>d", function() vim.diagnostic.setqflist({ severity = vim.diagnostic.severity.ERROR }) end,
+    opts)
+  vim.keymap.set("n", "<leader>dv", function() vim.diagnostic.setqflist() end,
+    opts)
+  vim.keymap.set("n", "<C-i>", function() vim.lsp.buf.code_action() end, opts)
   vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
@@ -142,7 +166,17 @@ if not lsp_config_ok then
   return
 end
 
+lsp_config.tsserver.setup {
+  commands = {
+    OrganizeImports = {
+      organize_imports,
+      description = "Organize Imports"
+    }
+  }
+}
+
 lsp_config.angularls.setup {}
+
 lsp_config.bashls.setup({
   filetypes = { "sh", "zsh", "bash" },
 })
