@@ -10,7 +10,7 @@ if [ -z "$launch_settings" ]; then
   return
 fi
 
-launch_profile=$(jq ".profiles | keys[]" "$launch_settings" | fzf)
+launch_profile=$(jq --raw-output ".profiles | keys[]" "$launch_settings" | fzf)
 if [ -z "$launch_profile" ]; then
   return
 fi

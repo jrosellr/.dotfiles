@@ -1,11 +1,6 @@
 #!/usr/bin/env sh
 
-available_scripts=$(jq '.scripts | keys[]' package.json)
-if [ -z "$available_scripts" ]; then
-  return
-fi
-
-selected_script=$($available_scripts | sort | fzf)
+selected_script=$(jq --raw-output '.scripts | keys[]' package.json | sort | fzf)
 if [ -z "$selected_script" ]; then
   return
 fi
