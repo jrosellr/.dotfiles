@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+alias c='clear'
+alias jd='cd $(find ~/dev/* -maxdepth 2 -type d | fzf)'
+alias gjb='git branch -a | fzf | sed "s/remotes\/origin\///" | xargs --no-run-if-empty git checkout'
+alias nr='npm_run'
+alias dr='dotnet_run'
+

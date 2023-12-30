@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+project=$(find . -type f -name "**.csproj" | fzf)
+if [ -z "$project" ]; then
+  return
+fi
+
+launch_settings=$(find . -type f -name "launchSettings.json")
+if [ -z "$launch_settings" ]; then
+  return
+fi
+
+launch_profile=$(jq ".profiles | keys[]" "$launch_settings" | fzf)
+if [ -z "$launch_profile" ]; then
+  return
+fi
+
+dotnet run --project "$project" --launch-profile "$launch_profile"
+
